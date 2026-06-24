@@ -1,71 +1,53 @@
-const SchoolIcon = () => (
-  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
-  </svg>
-)
-
-const MapPinIcon = () => (
-  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-  </svg>
-)
-
-const BriefcaseIcon = () => (
-  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
-    <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-  </svg>
-)
-
-const MailIcon = () => (
-  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-    <polyline points="22,6 12,13 2,6"/>
-  </svg>
-)
-
 export default function AboutCard() {
   return (
-    <div className="bg-white dark:bg-fb-dark rounded-lg p-4 shadow-sm border border-gray-200 dark:border-fb-darkborder">
-      <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-3">About</h2>
+    <div className="group relative bg-white dark:bg-fb-dark rounded-xl shadow-sm border border-gray-200 dark:border-fb-darkborder overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
+      {/* Subtle grid bg */}
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none"
+        style={{
+          backgroundImage: `linear-gradient(rgba(59,130,246,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.3) 1px, transparent 1px)`,
+          backgroundSize: '24px 24px',
+        }}
+      />
+      {/* Glow border on hover */}
+      <div className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 pointer-events-none group-hover:opacity-100"
+        style={{ boxShadow: 'inset 0 0 0 1px rgba(59,130,246,0.3)' }}
+      />
 
-      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-        A motivated and detail-oriented Computer Engineering student with a strong passion for
-        technology and continuous learning. Skilled in software development, data analytics,
-        and building practical systems using modern tools and programming languages.
-      </p>
+      <div className="relative p-5">
+        {/* Header */}
+        <div className="flex items-center gap-2 mb-4">
+          <div className="h-5 w-1 rounded-full bg-fb-blue" />
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white">About Me</h2>
+        </div>
 
-      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-        My journey in tech began in February 2024 during my senior high school internship at
-        DICT-Catanduanes, where I wrote my first "Hello World" program. Since then, I've evolved
-        from building simple HTML/CSS pages to developing full-featured web and desktop applications.
-      </p>
-
-      <div className="border-t border-gray-200 dark:border-fb-darkborder pt-3 mb-4">
-        <p className="text-sm text-gray-500 dark:text-gray-400 italic">
-          ♟ Competitive chess player — strategic thinking translates well into software development.
+        {/* Intro */}
+        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+          I enjoy turning ideas into real-world digital experiences using modern web technologies.
+          I focus on building scalable, user-friendly applications while continuously improving
+          my skills in software engineering.
         </p>
-      </div>
 
-      <div className="space-y-2">
-        <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-          <span className="text-fb-blue flex-shrink-0"><SchoolIcon /></span>
-          BS Computer Engineering, CatSU
+        {/* Highlight Feature Card */}
+        <div className="relative mb-5 p-3.5 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50/50 dark:from-blue-950/20 dark:to-indigo-950/10 border border-blue-100/80 dark:border-blue-900/40 transition-all duration-300 hover:shadow-md hover:border-blue-200 dark:hover:border-blue-700/50">
+          <div className="absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300 pointer-events-none"
+            style={{ boxShadow: '0 0 20px rgba(59,130,246,0.08)' }}
+          />
+          <div className="relative flex gap-3">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center text-lg flex-shrink-0 shadow-sm">
+              🤖
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-0.5">AI-Assisted Development</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+                Leverage AI as a development partner for rapid prototyping, debugging, optimization, and accelerating productivity.
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-          <span className="text-fb-blue flex-shrink-0"><MapPinIcon /></span>
-          Catanduanes, Philippines
-        </div>
-        <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-          <span className="text-fb-blue flex-shrink-0"><BriefcaseIcon /></span>
-          Assistant Statistician (Part-time)
-        </div>
-        <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-          <span className="text-fb-blue flex-shrink-0"><MailIcon /></span>
-          <a href="mailto:kevinbueno360@gmail.com" className="text-fb-blue hover:underline">
-            kevinbueno360@gmail.com
-          </a>
-        </div>
+
+
       </div>
     </div>
   )
 }
+

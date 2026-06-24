@@ -33,102 +33,152 @@ const MessageIcon = () => (
   </svg>
 )
 
+const DownloadIcon = () => (
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+  </svg>
+)
+
+const GridIcon = () => (
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
+    <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+  </svg>
+)
+
+const InfoIcon = () => (
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
+    <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+  </svg>
+)
+
+const FolderIcon = () => (
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+  </svg>
+)
+
+const CodeIcon = () => (
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
+    <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+  </svg>
+)
+
+const AwardIcon = () => (
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
+    <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+  </svg>
+)
+
+const MoreIcon = () => (
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
+    <circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>
+  </svg>
+)
+
 
 export default function ProfileHeader({ activeTab, setActiveTab }) {
 
-const tabs = ['All', 'About', 'Projects', 'Skills', 'Certificates', 'Others']
+const tabs = [
+  { label: 'All', icon: GridIcon },
+  { label: 'About', icon: InfoIcon },
+  { label: 'Projects', icon: FolderIcon },
+  { label: 'Skills', icon: CodeIcon },
+  { label: 'Certificates', icon: AwardIcon },
+  { label: 'Others', icon: MoreIcon },
+]
   return (
     <div className="bg-white dark:bg-fb-dark border-b border-gray-200 dark:border-fb-darkborder px-4">
 
-      {/* Profile pic + info + buttons row */}
-      <div className="flex items-end gap-4 pb-4 -mt-10">
+      {/* Mobile: centered | Desktop: side-by-side */}
+      <div className="flex flex-col md:flex-row md:items-end md:gap-4 pb-4">
 
         {/* Profile Picture */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3 }}
-          className="relative z-10 flex-shrink-0"
+          className="relative z-10 flex-shrink-0 -mt-14 sm:-mt-20 flex justify-center md:block"
         >
-          <img
-            src="/profilepic.jpg"
-            alt="Kevin Bueno"
-            className="w-28 h-28 sm:w-36 sm:h-36 rounded-full border-4 border-white dark:border-fb-dark object-cover shadow-lg"
-          />
-          <div className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-fb-dark" />
-        </motion.div>
-
-        {/* Name + info + skills */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="pb-1 flex-1 min-w-0"
-        >
-             <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white whitespace-nowrap">
-            Kevin B. Bueno
-          </h1>
-          <p className="text-gray-500 dark:text-gray-400 text-sm">
-            BS Computer Engineering · CatSU · 2024–Present
-          </p>
-
-          {/* Social links inline */}
-          <div className="flex items-center gap-1 mt-1 flex-wrap">
-            <span className="text-fb-blue font-medium text-sm">Aspiring Software Engineer</span>
-            <span className="text-gray-300 dark:text-gray-600 mx-1">·</span>
-            {[
-              { Icon: GithubIcon, href: 'https://github.com/KevzBueno101', label: 'GitHub' },
-              { Icon: GlobeIcon, href: 'https://www.facebook.com/kevin.b.bueno.5', label: 'Facebook' },
-              { Icon: LinkedinIcon, href: 'https://www.linkedin.com/in/kevin-bueno-922174375', label: 'LinkedIn' },
-              { Icon: MailIcon, href: 'mailto:kevinbueno360@gmail.com', label: 'Email' },
-            ].map(({ Icon, href, label }) => (
-              <a key={label} href={href} target="_blank" rel="noreferrer" title={label}
-                className="p-1.5 rounded-full text-gray-500 dark:text-gray-400 hover:text-fb-blue hover:bg-blue-50 dark:hover:bg-fb-darkcard transition">
-                <Icon />
-              </a>
-            ))}
+          <div className="relative inline-flex">
+            <img
+              src="/profilepic.jpg"
+              alt="Kevin Bueno"
+              className="w-36 h-36 sm:w-48 sm:h-48 rounded-full border-4 border-white dark:border-fb-dark object-cover shadow-lg"
+            />
+            <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-[3px] border-white dark:border-fb-dark shadow-sm" />
           </div>
         </motion.div>
 
-        {/* Right — Message + Contact buttons */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="hidden sm:flex gap-2 pb-2 flex-shrink-0"
-        >
-          
+        {/* Name + info + socials + buttons */}
+        <div className="flex flex-col md:flex-row md:flex-1 md:items-end md:gap-4 text-center md:text-left">
+          {/* Name + info + socials */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="md:flex-1 md:min-w-0 mt-2 md:mt-0"
+          >
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white break-words">
+              Kevin B. Bueno
+            </h1>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">
+              BS Computer Engineering · CatSU · 2024–Present
+            </p>
+
+            <div className="flex items-center justify-center md:justify-start gap-1 mt-1 flex-wrap">
+              <span className="text-fb-blue font-medium text-sm">Aspiring Software Engineer</span>
+              <span className="text-gray-300 dark:text-gray-600 mx-1 hidden sm:inline">·</span>
+              {[
+                { Icon: GithubIcon, href: 'https://github.com/KevzBueno101', label: 'GitHub' },
+                { Icon: GlobeIcon, href: 'https://www.facebook.com/kevin.b.bueno.5', label: 'Facebook' },
+                { Icon: LinkedinIcon, href: 'https://www.linkedin.com/in/kevin-bueno-922174375', label: 'LinkedIn' },
+                { Icon: MailIcon, href: 'mailto:kevinbueno360@gmail.com', label: 'Email' },
+              ].map(({ Icon, href, label }) => (
+                <a key={label} href={href} target="_blank" rel="noreferrer" title={label}
+                  className="p-1.5 rounded-full text-gray-500 dark:text-gray-400 hover:text-fb-blue hover:bg-blue-50 dark:hover:bg-fb-darkcard transition">
+                  <Icon />
+                </a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Action buttons */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="flex gap-2 justify-center md:justify-end flex-shrink-0 mt-3 md:mt-0 md:pb-2"
+          >
             <a href="mailto:kevinbueno360@gmail.com"
-            className="flex items-center gap-2 px-4 py-2 bg-fb-blue text-white text-sm font-semibold rounded-lg hover:bg-blue-600 transition"
-          >
-            <MessageIcon />
-            Message
-          </a>
-          
-          <a   href="https://github.com/KevzBueno101"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-fb-darkcard text-gray-700 dark:text-gray-300 text-sm font-semibold rounded-lg hover:bg-gray-200 dark:hover:bg-fb-darkhover transition"
-          >
-            <GithubIcon />
-            GitHub
-          </a>
-        </motion.div>
+              className="flex items-center gap-2 px-4 py-2 bg-fb-blue text-white text-sm font-semibold rounded-lg hover:bg-blue-600 transition"
+            >
+              <MessageIcon />
+              <span>Message</span>
+            </a>
+            <a href="/resume/KEVIN_BUENO_RESUME.pdf" download
+              className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-fb-darkcard text-gray-700 dark:text-gray-300 text-sm font-semibold rounded-lg hover:bg-gray-200 dark:hover:bg-fb-darkhover transition"
+            >
+              <DownloadIcon />
+              <span>Resume</span>
+            </a>
+          </motion.div>
+        </div>
       </div>
 
       {/* Tab Navigation */}
-      <div className="flex gap-1 border-t border-gray-200 dark:border-fb-darkborder">
-        {tabs.map((tab) => (
+      <div className="flex md:justify-center gap-1 border-t border-gray-200 dark:border-fb-darkborder overflow-x-auto scrollbar-none">
+        {tabs.map(({ label, icon: Icon }) => (
           <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-4 py-3 text-sm font-medium transition-all border-b-2 ${
-              activeTab === tab
+            key={label}
+            onClick={() => setActiveTab(label)}
+            className={`inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-4 py-3 text-xs sm:text-sm font-medium transition-all border-b-2 flex-shrink-0 ${
+              activeTab === label
                 ? 'border-fb-blue text-fb-blue'
                 : 'border-transparent text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-fb-darkcard'
             }`}
           >
-            {tab}
+            <Icon />
+            {label}
           </button>
         ))}
       </div>

@@ -52,7 +52,7 @@ export default function CoverPhoto() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5 }}
-          className="text-white font-bold text-xl sm:text-2xl tracking-wide"
+          className="text-white font-bold text-sm sm:text-lg md:text-2xl tracking-wide"
           style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic' }}
         >
           Grit. Grind. Grow.
@@ -61,7 +61,7 @@ export default function CoverPhoto() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.7 }}
-          className="text-gray-400 text-sm mt-1"
+          className="text-gray-400 text-[10px] sm:text-sm mt-1"
         >
           Engineer in the making...
         </motion.p>

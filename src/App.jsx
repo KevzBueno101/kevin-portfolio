@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from './components/layout/Navbar'
 import CoverPhoto from './components/profile/CoverPhoto'
 import ProfileHeader from './components/profile/ProfileHeader'
@@ -9,6 +9,32 @@ import LinksCard from './components/sidebar/LinksCard'
 import ProjectCard from './components/feed/ProjectCard'
 import CertificatesSection from './components/feed/CertificatesSection'
 import { projects } from './data/projects'
+import { skills } from './data/skills'
+import { certificates } from './data/certificates'
+
+const ScrollToTop = () => {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 300)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  return (
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      className={`fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-fb-blue text-white shadow-lg flex items-center justify-center transition-all duration-300 hover:bg-blue-600 hover:shadow-xl hover:-translate-y-1 ${
+        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+      }`}
+      title="Scroll to top"
+    >
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <polyline points="18 15 12 9 6 15"/>
+      </svg>
+    </button>
+  )
+}
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('All')
@@ -22,22 +48,21 @@ export default function App() {
     p.tech.some((t) => t.toLowerCase().includes(q))
   )
 
-  const filteredSkills = q === '' ? [] : [
-    'Python', 'HTML5', 'CSS3', 'JavaScript', 'C', 'SQL',
-    'React', 'Django', 'Bootstrap', 'Tailwind CSS',
-    'Git', 'GitHub', 'VS Code', 'Notion', 'Canva', 'Arduino IDE',
-  ].filter((s) => s.toLowerCase().includes(q))
+  const allSkillNames = skills.flatMap((cat) => cat.items.map((s) => s.name))
+  const filteredSkills = q === '' ? [] : allSkillNames.filter((s) => s.toLowerCase().includes(q))
 
-  const filteredCerts = q === '' ? [] : [
-    'Data Visualization', 'Building Blocks of Programming',
-    'Python - Data Analytics', 'Git & Version Control',
-    'NC II - Computer Systems Servicing', 'Certificate of Participation',
-  ].filter((c) => c.toLowerCase().includes(q))
+  const allCertTitles = certificates.map((c) => c.title)
+  const filteredCerts = q === '' ? [] : allCertTitles.filter((c) => c.toLowerCase().includes(q))
 
   const aboutKeywords = [
     'kevin', 'bueno', 'computer engineering', 'catsu', 'philippines',
     'software engineer', 'chess', 'statistics', 'dict', 'ojt',
     'grit', 'grind', 'grow', 'assistant statistician',
+    'calatagan', 'high school', 'computer systems servicing', 'nc ii',
+    'with high honors', 'work immersion', 'hello world',
+    'data analytics', 'web development', 'desktop',
+    'python', 'html', 'css', 'javascript', 'react', 'django',
+    'github', 'jasp', 'jamovi', 'adobe photoshop', 'windows server',
   ]
   const aboutMatch = q !== '' && aboutKeywords.some((k) => k.includes(q))
   const hasResults = filteredProjects.length > 0 || filteredSkills.length > 0 || filteredCerts.length > 0 || aboutMatch
@@ -62,19 +87,18 @@ export default function App() {
           <ProfileHeader activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
 
-        <div className="max-w-5xl mx-auto px-4 py-4">
-          <div className="flex gap-4 items-start">
+        <div className="max-w-6xl mx-auto px-4 py-4">
+          <div className="flex gap-6 items-start">
 
             {/* LEFT SIDEBAR */}
-            <div className="hidden md:flex flex-col gap-4 w-80 flex-shrink-0 sticky top-16">
+            <div className="hidden md:flex flex-col gap-4 w-72 flex-shrink-0 sticky top-16">
               <AboutCard />
-              <SkillsCard />
               <EducationCard />
               <LinksCard />
             </div>
 
             {/* MAIN FEED */}
-            <div className="flex-1 space-y-4">
+            <div className="flex-1 space-y-4 min-w-0">
 
               {/* SEARCH RESULTS */}
               {q !== '' && (
@@ -139,12 +163,16 @@ export default function App() {
                 <div className="space-y-4">
                   <div className="md:hidden space-y-4">
                     <AboutCard />
-                    <SkillsCard />
                     <EducationCard />
+                    <SkillsCard />
                     <LinksCard />
                   </div>
-                  <div className="hidden md:block space-y-4">
-                    {projects.map((project, index) => (
+                  <div className="p-4 bg-white dark:bg-fb-dark rounded-lg shadow-sm border border-gray-200 dark:border-fb-darkborder">
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-1">Welcome to my portfolio</h2>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Explore my projects, skills, and journey in tech.</p>
+                  </div>
+                  <div className="space-y-5">
+                    {projects.slice(0, 2).map((project, index) => (
                       <ProjectCard key={project.id} project={project} index={index} />
                     ))}
                   </div>
@@ -153,15 +181,55 @@ export default function App() {
 
               {/* ABOUT TAB */}
               {activeTab === 'About' && q === '' && (
-                <div className="space-y-4">
-                  <AboutCard />
-                  <EducationCard />
+                <div className="space-y-5">
+                  <div className="bg-white dark:bg-fb-dark rounded-lg p-5 shadow-sm border border-gray-200 dark:border-fb-darkborder">
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">About Me</h2>
+                    <div className="space-y-4">
+                      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                        A motivated and detail-oriented Computer Engineering student with a strong passion for
+                        technology and continuous learning. Skilled in software development, data analytics,
+                        and building practical systems using modern tools and programming languages.
+                      </p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                        My journey in tech began in February 2024 during my senior high school internship at
+                        DICT-Catanduanes, where I wrote my first "Hello World" program. Since then, I've evolved
+                        from building simple HTML/CSS pages to developing full-featured web and desktop applications
+                        using React, Django, and Python.
+                      </p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 italic border-l-4 border-fb-blue pl-3">
+                        ♟ Competitive chess player — strategic thinking translates well into software development.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {[
+                      { value: '2024', label: 'Started Coding', color: 'text-blue-600' },
+                      { value: '5+', label: 'Projects Built', color: 'text-green-600' },
+                      { value: '6+', label: 'Certificates', color: 'text-purple-600' },
+                      { value: '3', label: 'Tech Stacks', color: 'text-orange-600' },
+                    ].map((stat) => (
+                      <div key={stat.label} className="bg-white dark:bg-fb-dark rounded-lg p-4 shadow-sm border border-gray-200 dark:border-fb-darkborder text-center">
+                        <p className={`text-2xl font-bold ${stat.color}`}>{stat.value}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{stat.label}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="bg-white dark:bg-fb-dark rounded-lg p-5 shadow-sm border border-gray-200 dark:border-fb-darkborder">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">My Philosophy</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                      I believe in building solutions that matter. Every line of code I write is driven by a
+                      desire to solve real-world problems — whether it's automating tedious tasks, making data
+                      accessible, or creating platforms that connect people. Grit. Grind. Grow.
+                    </p>
+                  </div>
                 </div>
               )}
 
               {/* PROJECTS TAB */}
               {activeTab === 'Projects' && q === '' && (
-                <div className="space-y-4">
+                <div className="space-y-5">
                   {projects.map((project, index) => (
                     <ProjectCard key={project.id} project={project} index={index} />
                   ))}
@@ -171,6 +239,10 @@ export default function App() {
               {/* SKILLS TAB */}
               {activeTab === 'Skills' && q === '' && (
                 <div className="space-y-4">
+                  <div className="p-4 bg-white dark:bg-fb-dark rounded-lg shadow-sm border border-gray-200 dark:border-fb-darkborder">
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-1">Skills & Tools</h2>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Technologies and tools I work with.</p>
+                  </div>
                   <SkillsCard />
                 </div>
               )}
@@ -183,6 +255,10 @@ export default function App() {
               {/* OTHERS TAB */}
               {activeTab === 'Others' && q === '' && (
                 <div className="space-y-4">
+                  <div className="p-4 bg-white dark:bg-fb-dark rounded-lg shadow-sm border border-gray-200 dark:border-fb-darkborder">
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-1">More About Me</h2>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Experience, contact, and other details.</p>
+                  </div>
                   <LinksCard />
                   <div className="bg-white dark:bg-fb-dark rounded-lg p-4 border border-gray-200 dark:border-fb-darkborder">
                     <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Experience</h2>
@@ -216,6 +292,8 @@ export default function App() {
           </div>
         </div>
       </div>
+
+      <ScrollToTop />
     </div>
   )
 }

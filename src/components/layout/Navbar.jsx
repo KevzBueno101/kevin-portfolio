@@ -6,21 +6,33 @@ const HomeIcon = () => (
   </svg>
 )
 
-const ProjectsIcon = () => (
+const InfoIcon = () => (
   <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
-    <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+    <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
   </svg>
 )
 
-const CertsIcon = () => (
+const FolderIcon = () => (
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+  </svg>
+)
+
+const CodeIcon = () => (
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+    <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+  </svg>
+)
+
+const AwardIcon = () => (
   <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
     <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
   </svg>
 )
 
-const ContactIcon = () => (
+const MoreIcon = () => (
   <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    <circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>
   </svg>
 )
 
@@ -41,10 +53,12 @@ const MoonIcon = () => (
 )
 
 const navItems = [
-  { icon: HomeIcon, label: 'Home', tab: 'About' },
-  { icon: ProjectsIcon, label: 'Projects', tab: 'Projects' },
-  { icon: CertsIcon, label: 'Certificates', tab: 'Certificates' },
-  { icon: ContactIcon, label: 'Contact', tab: 'Contact' },
+  { icon: HomeIcon, label: 'All', tab: 'All' },
+  { icon: InfoIcon, label: 'About', tab: 'About' },
+  { icon: FolderIcon, label: 'Projects', tab: 'Projects' },
+  { icon: CodeIcon, label: 'Skills', tab: 'Skills' },
+  { icon: AwardIcon, label: 'Certificates', tab: 'Certificates' },
+  { icon: MoreIcon, label: 'Others', tab: 'Others' },
 ]
 
 export default function Navbar({ activeTab, setActiveTab, searchQuery, onSearch }) {
@@ -52,21 +66,22 @@ export default function Navbar({ activeTab, setActiveTab, searchQuery, onSearch 
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 h-14 bg-white dark:bg-fb-dark border-b border-gray-200 dark:border-fb-darkborder shadow-sm">
-      <div className="max-w-5xl mx-auto h-full flex items-center justify-between px-4">
+      <div className="max-w-6xl mx-auto h-full flex items-center justify-between gap-2 px-2 sm:px-4">
 
-        {/* Left — Logo */}
         {/* Left — Logo + Search */}
         <div className="flex items-center gap-2 flex-shrink-0">
-          <div className="w-10 h-10 rounded-full bg-fb-blue flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
-            K
-          </div>
+          <img
+            src="/profilepic.jpg"
+            alt="Kevin Bueno"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover flex-shrink-0"
+          />
           <div className="relative hidden sm:block">
             <input
               type="text"
               placeholder="Search projects..."
               value={searchQuery}
               onChange={(e) => onSearch(e.target.value)}
-              className="w-48 pl-9 pr-4 py-2 rounded-full bg-gray-100 dark:bg-fb-darkcard text-sm text-gray-700 dark:text-gray-300 placeholder-gray-400 dark:placeholder-gray-500 border-none outline-none focus:ring-2 focus:ring-fb-blue/30 transition"
+              className="w-36 lg:w-48 pl-9 pr-4 py-2 rounded-full bg-gray-100 dark:bg-fb-darkcard text-sm text-gray-700 dark:text-gray-300 placeholder-gray-400 dark:placeholder-gray-500 border-none outline-none focus:ring-2 focus:ring-fb-blue/30 transition"
             />
             <svg
               className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
@@ -80,13 +95,13 @@ export default function Navbar({ activeTab, setActiveTab, searchQuery, onSearch 
         </div>
 
         {/* Center — Nav Icons */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-0.5 sm:gap-1 overflow-x-auto scrollbar-none flex-1 justify-center">
           {navItems.map(({ icon: Icon, label, tab }) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               title={label}
-              className={`relative flex flex-col items-center justify-center w-16 h-12 rounded-lg transition-all group ${
+              className={`relative flex flex-col items-center justify-center w-11 sm:w-14 h-12 rounded-lg transition-all group flex-shrink-0 ${
                 activeTab === tab
                   ? 'text-fb-blue'
                   : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-fb-darkcard'
@@ -94,17 +109,17 @@ export default function Navbar({ activeTab, setActiveTab, searchQuery, onSearch 
             >
               <Icon />
               {activeTab === tab && (
-                <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-fb-blue rounded-full" />
+                <span className="absolute bottom-0 left-1 sm:left-2 right-1 sm:right-2 h-0.5 bg-fb-blue rounded-full" />
               )}
             </button>
           ))}
         </div>
 
         {/* Right — Theme Toggle */}
-        <div className="flex items-center gap-2 flex-shrink-0">
+        <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full bg-gray-100 dark:bg-fb-darkcard hover:bg-gray-200 dark:hover:bg-fb-darkhover transition-all"
+            className="p-1.5 sm:p-2 rounded-full bg-gray-100 dark:bg-fb-darkcard hover:bg-gray-200 dark:hover:bg-fb-darkhover transition-all"
             title={isDark ? 'Light Mode' : 'Dark Mode'}
           >
             {isDark
