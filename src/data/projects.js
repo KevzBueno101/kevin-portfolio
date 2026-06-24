@@ -29,8 +29,8 @@ export const projects = [
       '/projects/rents/Screenshot 2026-05-21 232714.png',
       '/projects/rents/Screenshot 2026-05-21 232859.png',
     ],
-    live: null,
-    github: null,
+    live: 'https://rents-system.onrender.com',
+    github: 'https://github.com/KevzBueno101/rents_system/tree/dev',
     featured: false,
   },
   {
@@ -64,7 +64,7 @@ export const projects = [
     image: '/projects/statsapp/Stats.png',
     images: ['/projects/statsapp/Stats.png'],
     live: null,
-    github: null,
+    github: 'https://github.com/KevzBueno101/Statistical_Tools',
     featured: false,
   },
   {
