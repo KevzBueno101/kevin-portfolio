@@ -91,7 +91,7 @@ export default function App() {
           <div className="flex gap-6 items-start">
 
             {/* LEFT SIDEBAR */}
-            <div className="hidden md:flex flex-col gap-4 w-72 flex-shrink-0 sticky top-16">
+            <div className="hidden md:flex flex-col gap-4 w-72 flex-shrink-0 sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto scrollbar-none pb-4">
               <AboutCard />
               <EducationCard />
               <LinksCard />
@@ -160,22 +160,87 @@ export default function App() {
 
               {/* ALL TAB */}
               {activeTab === 'All' && q === '' && (
-                <div className="space-y-4">
-                  <div className="md:hidden space-y-4">
+                <div className="space-y-5">
+                  <div className="md:hidden space-y-5">
                     <AboutCard />
                     <EducationCard />
                     <SkillsCard />
                     <LinksCard />
                   </div>
-                  <div className="p-4 bg-white dark:bg-fb-dark rounded-lg shadow-sm border border-gray-200 dark:border-fb-darkborder">
+
+                  {/* About */}
+                  <div className="bg-white dark:bg-fb-dark rounded-lg p-5 shadow-sm border border-gray-200 dark:border-fb-darkborder">
                     <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-1">Welcome to my portfolio</h2>
                     <p className="text-sm text-gray-500 dark:text-gray-400">Explore my projects, skills, and journey in tech.</p>
                   </div>
-                  <div className="space-y-5">
-                    {projects.slice(0, 2).map((project, index) => (
-                      <ProjectCard key={project.id} project={project} index={index} />
-                    ))}
+                  <div className="bg-white dark:bg-fb-dark rounded-lg p-5 shadow-sm border border-gray-200 dark:border-fb-darkborder">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">About Me</h3>
+                    <div className="space-y-4">
+                      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                        A motivated and detail-oriented Computer Engineering student with a strong passion for
+                        technology and continuous learning. Skilled in software development, data analytics,
+                        and building practical systems using modern tools and programming languages.
+                      </p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                        My journey in tech began in February 2024 during my senior high school internship at
+                        DICT-Catanduanes, where I wrote my first "Hello World" program. Since then, I've evolved
+                        from building simple HTML/CSS pages to developing full-featured web and desktop applications
+                        using React, Django, and Python.
+                      </p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 italic border-l-4 border-fb-blue pl-3">
+                        ♟ Competitive chess player — strategic thinking translates well into software development.
+                      </p>
+                    </div>
                   </div>
+
+                  {/* Skills */}
+                  <div className="bg-white dark:bg-fb-dark rounded-lg p-5 shadow-sm border border-gray-200 dark:border-fb-darkborder">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Skills & Tools</h3>
+                    <SkillsCard />
+                  </div>
+
+                  {/* Projects */}
+                  <div>
+                    <h3 className="text-base font-bold text-gray-900 dark:text-white px-1 mb-3">Projects</h3>
+                    <div className="space-y-5">
+                      {projects.map((project, index) => (
+                        <ProjectCard key={project.id} project={project} index={index} />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Certificates */}
+                  <CertificatesSection />
+
+                  {/* Experience */}
+                  <div className="bg-white dark:bg-fb-dark rounded-lg p-5 shadow-sm border border-gray-200 dark:border-fb-darkborder">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Experience</h3>
+                    <div className="space-y-3">
+                      <div className="flex gap-3">
+                        <div className="w-10 h-10 rounded-full bg-blue-50 dark:bg-fb-darkcard flex items-center justify-center text-lg flex-shrink-0">
+                          📊
+                        </div>
+                        <div>
+                          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Assistant Statistician</h3>
+                          <p className="text-xs text-gray-500 dark:text-gray-400">Part-time</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Statistical data analysis for academic research using Python, JASP, and Jamovi.</p>
+                        </div>
+                      </div>
+                      <div className="flex gap-3">
+                        <div className="w-10 h-10 rounded-full bg-blue-50 dark:bg-fb-darkcard flex items-center justify-center text-lg flex-shrink-0">
+                          🏛️
+                        </div>
+                        <div>
+                          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">DICT-Catanduanes</h3>
+                          <p className="text-xs text-gray-500 dark:text-gray-400">OJT · Feb 2024</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">80-hour training on MS Office, Adobe Photoshop, Windows Server, and HTML/CSS.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Links */}
+                  <LinksCard />
                 </div>
               )}
 

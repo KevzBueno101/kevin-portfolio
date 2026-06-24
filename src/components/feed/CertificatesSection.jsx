@@ -149,6 +149,33 @@ export default function CertificatesSection() {
         )
       })}
 
+      {/* Credly Badges */}
+      <div className="bg-white dark:bg-[#111827] rounded-2xl p-5 shadow-sm border border-gray-200 dark:border-gray-800">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white">Credly Badges</h3>
+          <a href="https://www.credly.com/users/kvn/badges/credly" target="_blank" rel="noreferrer"
+            className="flex items-center gap-1 text-xs text-fb-blue hover:underline font-medium"
+          >
+            View Profile
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
+          {badges.map(({ id, label }) => (
+            <div key={id} className="flex flex-col items-center gap-1.5 group">
+              <img
+                src={`/badge/${id}.png`}
+                alt={label}
+                className="w-full aspect-square object-contain rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-1.5 group-hover:border-fb-blue transition"
+              />
+              <span className="text-[10px] text-gray-500 dark:text-gray-400 text-center leading-tight line-clamp-2">
+                {label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Modal */}
       <AnimatePresence>
         {modal && (
@@ -229,3 +256,13 @@ const descriptions = {
   Certification: 'Industry-recognized credential validating technical competence and professional knowledge.',
   Seminar: 'Attended an insightful session on emerging trends and best practices in the field.',
 }
+
+const badges = [
+  { id: 'data-analytics-essentials', label: 'Data Analytics Essentials' },
+  { id: 'digital-awareness', label: 'Digital Awareness' },
+  { id: 'digital-literacy', label: 'Digital Literacy' },
+  { id: 'introduction-to-modern-ai', label: 'Introduction to Modern AI' },
+  { id: 'javascript-essentials-1', label: 'JavaScript Essentials 1' },
+  { id: 'python-essentials-1.1', label: 'Python Essentials 1' },
+  { id: 'using-computer-and-mobile-devices', label: 'Using Computer and Mobile Devices' },
+]
