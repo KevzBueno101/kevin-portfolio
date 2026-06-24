@@ -33,9 +33,6 @@ export default function ProjectCard({ project, index }) {
         {/* Header */}
         <div className="p-4 sm:p-5 pb-3">
           <div className="flex items-start gap-3">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-fb-blue to-indigo-500 flex items-center justify-center flex-shrink-0 shadow-sm">
-              <CodeIcon />
-            </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-2">
                 <div>

@@ -127,18 +127,6 @@ const tabs = [
 
             <div className="flex items-center justify-center md:justify-start gap-1 mt-1 flex-wrap">
               <span className="text-fb-blue font-medium text-sm">Aspiring Software Engineer</span>
-              <span className="text-gray-300 dark:text-gray-600 mx-1 hidden sm:inline">·</span>
-              {[
-                { Icon: GithubIcon, href: 'https://github.com/KevzBueno101', label: 'GitHub' },
-                { Icon: GlobeIcon, href: 'https://www.facebook.com/kevin.b.bueno.5', label: 'Facebook' },
-                { Icon: LinkedinIcon, href: 'https://www.linkedin.com/in/kevin-bueno-922174375', label: 'LinkedIn' },
-                { Icon: MailIcon, href: 'mailto:kevinbueno360@gmail.com', label: 'Email' },
-              ].map(({ Icon, href, label }) => (
-                <a key={label} href={href} target="_blank" rel="noreferrer" title={label}
-                  className="p-1.5 rounded-full text-gray-500 dark:text-gray-400 hover:text-fb-blue hover:bg-blue-50 dark:hover:bg-fb-darkcard transition">
-                  <Icon />
-                </a>
-              ))}
             </div>
           </motion.div>
 
