@@ -1,16 +1,47 @@
-# React + Vite
+# Kevin B. Bueno — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A social-media-style developer portfolio built with **React + Vite + Tailwind CSS**. Features project feeds, certificates gallery, skills showcase, and dark/light theme.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Project Feed** — Facebook-style post cards with asymmetric media gallery, modal viewer, tech stack tags, and action buttons
+- **Certificates Gallery** — Filterable, searchable grid of certifications, seminars, and courses
+- **Skills & Tools** — Categorized tech stack display with devicon badges
+- **Dark/Light Mode** — Theme toggle with persistent state
+- **Responsive** — Mobile-first design with adaptive layouts
+- **Search** — Filter projects and certificates by keyword
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework:** React 19 + Vite
+- **Styling:** Tailwind CSS v4
+- **Animations:** Framer Motion
+- **Icons:** SVG inline components
+- **Theme:** React Context API
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── feed/          # ProjectCard, CertificateCard
+│   ├── layout/        # Navbar
+│   ├── profile/       # ProfileHeader
+│   └── sidebar/       # AboutCard, EducationCard, SkillsCard, LinksCard
+├── data/              # projects.js, certificates.js, skills.js
+├── context/           # ThemeContext
+└── assets/            # Static images
+```
