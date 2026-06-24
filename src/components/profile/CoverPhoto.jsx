@@ -63,7 +63,7 @@ export default function CoverPhoto() {
           transition={{ delay: 0.7 }}
           className="text-gray-400 text-sm mt-1"
         >
-          BS Computer Engineering
+          Engineer in the making...
         </motion.p>
       </div>
     </div>
