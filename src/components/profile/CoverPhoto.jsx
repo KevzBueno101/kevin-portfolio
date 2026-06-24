@@ -30,24 +30,8 @@ export default function CoverPhoto() {
       <div className="absolute top-4 left-1/4 w-32 h-32 bg-fb-blue/10 rounded-full blur-3xl" />
       <div className="absolute bottom-4 right-1/4 w-24 h-24 bg-blue-400/10 rounded-full blur-2xl" />
 
-      {/* Skill icons — top right */}
-      <div className="absolute top-4 right-4 flex gap-2 flex-wrap justify-end max-w-xs">
-        {skillIcons.map((icon, i) => (
-          <motion.div
-            key={icon.name}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className="w-8 h-8 bg-white/10 backdrop-blur-sm rounded-lg p-1 border border-white/20"
-            title={icon.name}
-          >
-            <img src={icon.url} alt={icon.name} className="w-full h-full object-contain" />
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Tagline — bottom right */}
-      <div className="absolute bottom-4 right-4 text-right">
+      {/* Tagline — top right */}
+      <div className="absolute top-4 right-4 text-right">
         <motion.h1
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}

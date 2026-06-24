@@ -116,6 +116,14 @@ export default function ProjectCard({ project, index }) {
               {expanded ? 'Show less' : 'Read more'}
             </button>
           )}
+          {/* Hashtag tech */}
+          <div className="flex flex-wrap gap-x-2 gap-y-0.5 mt-2">
+            {project.tech.map((tech) => (
+              <span key={tech} className="text-xs text-fb-blue/70 dark:text-blue-400/70 font-medium">
+                #{tech.replace(/\s+/g, '')}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Media Gallery */}
@@ -231,19 +239,6 @@ export default function ProjectCard({ project, index }) {
             </div>
           </div>
         )}
-
-        {/* Tech Stack */}
-        <div className="px-4 sm:px-5 pb-3">
-          <div className="flex flex-wrap gap-1.5">
-            {project.tech.map((tech) => (
-              <span key={tech}
-                className="text-xs px-2.5 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 font-medium"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
 
         {/* Footer Actions */}
         <div className="px-4 sm:px-5 pb-4 pt-3 border-t border-gray-100 dark:border-gray-800/60">
