@@ -18,7 +18,7 @@ export const projects = [
     id: 6,
     title: 'Rents Management System',
     description: 'A rental property management system for tracking tenants, payments, and lease agreements. Simplifies rent collection and financial record-keeping for property owners.',
-    tech: ['PHP', 'MySQL', 'XAMPP', 'HTML', 'CSS', 'JavaScript'],
+    tech: ['Django', 'React', 'Windsurf', 'PostgreSQL'],
     category: 'Web App',
     image: '/projects/rents/Screenshot 2026-05-21 232523.png',
     images: [
